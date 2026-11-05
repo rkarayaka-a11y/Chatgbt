@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#a94f35"><meta name="description" content="Türkçe arayüzlü kişisel Almanca öğrenme uygulaması">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+<title>Almanca Yolculuğum</title>
+</head>
+<body>
+<header class="top"><div><div class="eyebrow">KİŞİSEL ALMANCA ÖĞRETMENİN</div><h1>Hallo! <span>👋</span></h1><p>Bugün Almancanı biraz daha geliştirelim.</p></div><div class="level-pill">A1–B1</div></header>
+<nav class="tabs" id="tabs">
+<button class="tab active" data-page="home">Ana sayfa</button><button class="tab" data-page="words">Kelimeler</button><button class="tab" data-page="sentences">Cümleler</button><button class="tab" data-page="verbs">Fiiller</button><button class="tab" data-page="grammar">Gramer</button><button class="tab" data-page="chat">Sohbet 🤖</button><button class="tab" data-page="import">Excel / Ayarlar</button>
+</nav>
+<main>
+<section id="home" class="page active">
+<div class="hero card"><div><span class="eyebrow light">BUGÜNÜN HEDEFİ</span><h2>Her gün küçük bir adım,<br>büyük bir ilerleme.</h2><p>Öğren, dene, tekrar et.</p></div><div class="hero-icon">📚</div></div>
+<div class="stats"><div class="stat card"><span>Öğrenilen</span><b id="learnedCount">0</b><small>öğe</small></div><div class="stat card"><span>Doğru cevap</span><b id="correctCount">0</b><small>cevap</small></div><div class="stat card"><span>Tekrar bekleyen</span><b id="reviewCount">0</b><small>öğe</small></div></div>
+<h2 class="section-title">Nereden başlayalım?</h2><div class="quick-grid">
+<button class="quick card" data-go="words"><i>🧠</i><b>Kelime çalış</b><small>Anlamlar ve örnekler</small></button>
+<button class="quick card" data-go="sentences"><i>💬</i><b>Cümle çalış</b><small>Çeviri ve alıştırmalar</small></button>
+<button class="quick card" data-go="verbs"><i>🔄</i><b>Fiil çekimleri</b><small>Düzenli ve düzensiz</small></button>
+<button class="quick card" data-go="grammar"><i>📖</i><b>Gramer</b><small>Artikel, edat, hâller</small></button>
+<button class="quick card" data-go="chat"><i>🤖</i><b>Almanca sohbet</b><small>Yapay zekâ ile pratik</small></button>
+</div>
+<div class="card note"><b>✨ Sana özel hatırlatma</b><p>Yanlış yaptığın sorular Zorlanılanlar listene eklenir. Düzenli tekrar ederek kalıcı öğrenebilirsin.</p><button class="outline" id="reviewHome">Zorlanılanları çalış</button></div>
+</section>
+
+<section id="words" class="page">
+<div class="page-head"><div><span class="eyebrow">KELİME DAĞARCIĞI</span><h2>Kelime çalışması</h2><p>Kelimeyi öğren, cümle içinde gör, sonra kendini dene.</p></div></div>
+<div class="toolbar"><select id="wordLevel"><option value="all">Tüm seviyeler</option><option>A1</option><option>A2</option><option>B1</option></select><select id="wordDirection"><option value="de-tr">Almanca → Türkçe</option><option value="tr-de">Türkçe → Almanca</option></select></div>
+<div class="mode-row"><button class="mode active" data-mode="teach" data-target="word">Öğretme</button><button class="mode" data-mode="test" data-target="word">Test</button></div>
+<div class="card study" id="wordCard"></div>
+</section>
+
+<section id="sentences" class="page">
+<div class="page-head"><div><span class="eyebrow">CÜMLE KURMA</span><h2>Cümle çalışması</h2><p>Almanca düşünmeyi ve doğru cümle kurmayı öğren.</p></div></div>
+<div class="toolbar"><select id="sentenceLevel"><option value="all">Tüm seviyeler</option><option>A1</option><option>A2</option><option>B1</option></select><select id="sentenceDirection"><option value="de-tr">Almanca → Türkçe</option><option value="tr-de">Türkçe → Almanca</option></select></div>
+<div class="mode-row"><button class="mode active" data-mode="teach" data-target="sentence">Öğretme</button><button class="mode" data-mode="test" data-target="sentence">Test</button></div>
+<div class="card study" id="sentenceCard"></div>
+</section>
+
+<section id="verbs" class="page">
+<div class="page-head"><div><span class="eyebrow">VERB LAB</span><h2>Fiil laboratuvarı</h2><p>Fiilleri seviyelerine göre incele ve çekimlerini öğren.</p></div></div>
+<div class="toolbar"><select id="verbLevel"><option value="all">Tüm seviyeler</option><option>A1</option><option>A2</option><option>B1</option></select><select id="verbType"><option value="all">Tüm fiiller</option><option value="irregular">Düzensiz</option><option value="separable">Ayrılabilir</option><option value="regular">Düzenli</option></select></div>
+<div class="card" id="verbList"></div>
+<div class="card note"><b>Fiil testi</b><p>Seçtiğin seviyeden fiil çekimi soruları çöz.</p><button class="primary" id="verbQuiz">Fiil testine başla</button><div id="verbQuizArea"></div></div>
+</section>
+
+<section id="grammar" class="page">
+<div class="page-head"><div><span class="eyebrow">GRAMER AKADEMİSİ</span><h2>Gramer çalışması</h2><p>Konuyu seç, kısa açıklamayı oku ve test çöz.</p></div></div>
+<div class="toolbar"><select id="grammarLevel"><option value="all">Tüm seviyeler</option><option>A1</option><option>A2</option><option>B1</option></select><select id="grammarTopic"><option value="Artikel">Artikel</option><option value="Akkusativ">Akkusativ</option><option value="Dativ">Dativ</option><option value="Edatlar">Edatlar</option><option value="Zarflar">Zarflar</option><option value="Bağlaçlar">Bağlaçlar</option><option value="Genitiv">Genitiv</option></select></div>
+<div class="card" id="grammarInfo"></div><div class="card"><h3>Konu testi</h3><div id="grammarQuestion"></div></div>
+</section>
+
+<section id="chat" class="page">
+<div class="page-head"><div><span class="eyebrow">KONUŞMA PRATİĞİ</span><h2>Yapay zekâ ile Almanca sohbet</h2><p>Günlük durumları canlandır, Almanca yaz ve hatalarını anında öğren.</p></div></div>
+<div class="mode-row chat-mode-switch"><button class="mode active" id="aiChatMode" type="button">🤖 Yapay zekâ sohbeti</button><button class="mode" id="offlineChatMode" type="button">📘 Hazır kalıplarla sohbet</button></div>
+<div id="aiChatArea">
+<div class="card chat-settings">
+<div class="toolbar"><label style="flex:1">Seviye<select id="chatLevel"><option>A1</option><option>A2</option><option>B1</option></select></label><label style="flex:2">Sohbet konusu<select id="chatScenario"><option value="Kendini tanıtma">Kendini tanıtma</option><option value="Adres ve yol sorma">Adres ve yol sorma</option><option value="Seyahat ve otel">Seyahat ve otel</option><option value="Tren ve ulaşım">Tren ve ulaşım</option><option value="Okul ve kurs">Okul ve kurs</option><option value="Kafe ve restoran">Kafe ve restoran</option><option value="Alışveriş">Alışveriş</option><option value="İş ve günlük hayat">İş ve günlük hayat</option><option value="Doktor ve eczane">Doktor ve eczane</option><option value="Serbest sohbet">Serbest sohbet</option></select></label></div>
+<label class="chat-check"><input type="checkbox" id="chatStrict" checked> Hata yaptığımda düzeltmeden yeni mesaja geçmeyeyim</label>
+<div class="chat-meta"><span id="chatUsage">Günlük hak: 20 / 20</span><button class="outline" id="chatClear" type="button">Sohbeti temizle</button></div>
+</div>
+<div class="card chat-panel"><div id="chatMessages" class="chat-messages" aria-live="polite"><div class="chat-empty">Hallo! 👋<br>Bir konu seç ve Almanca sohbet etmeye başlayalım.</div></div><div id="chatLockNotice" class="chat-lock" hidden></div><div class="chat-compose"><textarea id="chatInput" rows="2" maxlength="600" placeholder="Almanca cevabını buraya yaz..."></textarea><button class="primary" id="chatSend" type="button">Gönder ➤</button></div><div class="muted" id="chatStatus">Cevapların Türkçe açıklamayla değerlendirilecek.</div></div>
+<div class="card note"><b>Gizlilik ve günlük kullanım</b><p>Mesajların cevap oluşturulması için Google Gemini hizmetine gönderilir. Ücretsiz kullanım katmanında Google, gönderilen içeriği ürünlerini geliştirmek için kullanabilir. Bu nedenle özel veya hassas bilgilerini yazma. Sohbet geçmişin bu cihazdaki tarayıcıda saklanır.</p></div>
+</div>
+<div id="offlineChatArea" hidden>
+  <div class="card chat-settings">
+    <div class="toolbar"><label style="flex:1">Seviye<select id="offlineLevel"><option>A1</option><option>A2</option><option>B1</option></select></label><label style="flex:2">Konu<select id="offlineScenario"><option value="tanisma">Kendini tanıtma</option><option value="aile">Aile ve arkadaşlar</option><option value="gunluk">Günlük hayat</option><option value="kafe">Kafe</option><option value="restoran">Restoran</option><option value="otel">Otel</option><option value="ulasim">Otobüs ve tren</option><option value="yol">Adres ve yol sorma</option><option value="alisveris">Alışveriş</option><option value="kurs">Okul ve Almanca kursu</option><option value="is">İş hayatı</option><option value="haftasonu">Hobiler ve hafta sonu</option><option value="hava">Hava durumu</option><option value="ev">Ev ve kiralama</option><option value="iletisim">Telefon ve randevu</option><option value="saglik">Eczane ve sağlık</option><option value="gezi">Gezi ve tatil</option></select></label></div>
+    <p class="muted">Bu bölüm internet ve yapay zekâ gerektirmez. Türkçe cümleyi Almanca yaz; cevabını kontrol et.</p>
+  </div>
+  <div class="card offline-practice">
+    <div class="offline-progress"><span id="offlineStep">1 / 17</span><span id="offlineLevelTag">A1</span></div>
+    <div class="offline-speaker" id="offlineRole">Karşı taraf söylüyor:</div>
+    <h3 id="offlinePrompt">Merhaba, nasılsın?</h3>
+    <p class="offline-hint" id="offlineHint">Almanca karşılığını yaz.</p>
+    <textarea id="offlineAnswer" rows="2" placeholder="Almanca cevabını yaz..."></textarea>
+    <div class="offline-actions"><button class="primary" id="offlineCheck" type="button">Cevabımı kontrol et</button><button class="outline" id="offlineReveal" type="button">Doğru cevabı göster</button><button class="outline" id="offlineAccept" type="button" hidden>Benim cevabım da doğru</button></div>
+    <div id="offlineFeedback" class="offline-feedback" aria-live="polite"></div>
+    <button class="primary" id="offlineNext" type="button" hidden>Sonraki cümle ➜</button>
+  </div>
+</div>
+</section>
+
+<section id="import" class="page">
+<div class="page-head"><div><span class="eyebrow">KİŞİSEL İÇERİĞİN</span><h2>Excel ve ayarlar</h2><p>Kendi kelime ve cümle listenle çalış.</p></div></div>
+<div class="card"><h3>Excel dosyanı yükle</h3><p>Dosyada Kelimeler ve Cümleler adlı iki sayfa kullanabilirsin. Sütun başlıkları: Almanca, Türkçe, Seviye, Artikel, Çoğul. Cümle sayfasında Almanca, Türkçe, Seviye.</p><label class="upload">📄 Excel dosyası seç<input type="file" id="excelFile" accept=".xlsx,.xls,.csv"></label><p id="uploadStatus" class="muted">Dosyan yalnızca bu tarayıcıda işlenir ve içerikler cihazında saklanır.</p><button class="outline" id="downloadTemplate">Örnek Excel şablonunu indir</button></div>
+<div class="card"><h3>Alıştırma ayarları</h3><label> Soru şekli<select id="questionType"><option value="mixed">Karışık</option><option value="choice">Seçmeli</option><option value="write">Anlamını yaz</option><option value="order">Sıralama</option><option value="listen">Dinle-yaz</option><option value="repeat">Tekrar</option></select></label><p class="muted">Soru şekli, ilgili bölümdeki testlerde kullanılır.</p></div>
+<div class="card"><h3>Yedekleme</h3><p>İlerleme bilgilerini başka telefona taşımak için dışa aktarabilirsin.</p><button class="outline" id="exportData">İlerlemeyi indir</button><button class="danger" id="resetData">İstatistikleri sıfırla</button></div>
+</section>
+</main>
+<footer>Almanca Yolculuğum <span>•</span> Her gün biraz daha iyi.</footer>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="config.js"></script><script src="app.js"></script>
+</body></html>
