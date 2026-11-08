@@ -18,3 +18,7 @@ body.working-page main{margin-top:12px}
 
 /* Mobil tarayıcılarda mod panellerinin hidden durumunu koru */
 [hidden]{display:none!important}
+
+/* Gramer örneğinin Türkçe karşılığı */
+.grammar-example-de{font-weight:800;color:var(--ink)}.grammar-example-tr{margin-top:5px;color:#9a8f87;font-size:13px;font-style:italic}
+.offline-correction{padding:9px 10px;background:#e5efe2;border-left:4px solid #4d8050;border-radius:8px;color:#285b31}.offline-correction div{font-weight:800;margin-top:4px}.offline-diagnosis,.offline-alternatives{margin-top:10px;padding:9px 10px;background:#fffaf2;border-radius:8px;color:#5b4b3f}.offline-diagnosis ul,.offline-alternatives ul{margin:6px 0 4px;padding-left:20px}.offline-diagnosis li,.offline-alternatives li{margin:5px 0}.offline-alternatives small{display:block;margin-top:8px;color:var(--muted)}.offline-feedback a{color:var(--rust);font-weight:800}

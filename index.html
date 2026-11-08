@@ -67,7 +67,7 @@
 <div id="offlineChatArea" hidden>
   <div class="card chat-settings">
     <div class="toolbar"><label style="flex:1">Seviye<select id="offlineLevel"><option>A1</option><option>A2</option><option>B1</option></select></label><label style="flex:2">Konu<select id="offlineScenario"><option value="tanisma">Kendini tanıtma</option><option value="aile">Aile ve arkadaşlar</option><option value="gunluk">Günlük hayat</option><option value="kafe">Kafe</option><option value="restoran">Restoran</option><option value="otel">Otel</option><option value="ulasim">Otobüs ve tren</option><option value="yol">Adres ve yol sorma</option><option value="alisveris">Alışveriş</option><option value="kurs">Okul ve Almanca kursu</option><option value="is">İş hayatı</option><option value="haftasonu">Hobiler ve hafta sonu</option><option value="hava">Hava durumu</option><option value="ev">Ev ve kiralama</option><option value="iletisim">Telefon ve randevu</option><option value="saglik">Eczane ve sağlık</option><option value="gezi">Gezi ve tatil</option></select></label></div>
-    <p class="muted">Bu bölüm internet ve yapay zekâ gerektirmez. Türkçe cümleyi Almanca yaz; cevabını kontrol et.</p>
+    <p class="muted">Türkçe cümleyi Almanca yaz. Yanıtındaki yazım ve dilbilgisi hatalarını denetlemek için metin ücretsiz <a href="https://languagetool.org/" target="_blank" rel="noopener">LanguageTool</a> servisine gönderilir. İnternet kontrolü çalışmazsa kelime karşılaştırması yine gösterilir. Alternatif cümleler için <a href="https://tatoeba.org/" target="_blank" rel="noopener">Tatoeba</a> kullanılır.</p>
   </div>
   <div class="card offline-practice">
     <div class="offline-progress"><span id="offlineStep">1 / 17</span><span id="offlineLevelTag">A1</span></div>
@@ -75,7 +75,7 @@
     <h3 id="offlinePrompt">Merhaba, nasılsın?</h3>
     <p class="offline-hint" id="offlineHint">Almanca karşılığını yaz.</p>
     <textarea id="offlineAnswer" rows="2" placeholder="Almanca cevabını yaz..."></textarea>
-    <div class="offline-actions"><button class="primary" id="offlineCheck" type="button">Cevabımı kontrol et</button><button class="outline" id="offlineReveal" type="button">Doğru cevabı göster</button><button class="outline" id="offlineAccept" type="button" hidden>Benim cevabım da doğru</button></div>
+    <div class="offline-actions"><button class="primary" id="offlineCheck" type="button">Cevabımı kontrol et</button><button class="outline" id="offlineReveal" type="button">Doğru cevabı göster</button></div>
     <div id="offlineFeedback" class="offline-feedback" aria-live="polite"></div>
     <button class="primary" id="offlineNext" type="button" hidden>Sonraki cümle ➜</button>
   </div>

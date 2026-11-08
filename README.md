@@ -4,7 +4,7 @@ Bu paket, V10 uygulamasının GitHub Pages üzerinde yayınlanabilecek statik s�
 
 ## Önemli fark
 GitHub Pages yalnızca statik dosyaları yayınlar; Netlify Functions gibi sunucu kodlarını çalıştırmaz. Bu nedenle:
-- **Hazır kalıplarla sohbet** ve diğer uygulama bölümleri GitHub Pages üzerinde çalışır.
+- **Hazır kalıplarla sohbet** ve diğer uygulama bölümleri GitHub Pages üzerinde çalışır. Hazır sohbette cevap farkları yerel olarak gösterilir; internet varsa yazım/dilbilgisi kontrolü LanguageTool, alternatif cümle araması Tatoeba üzerinden denenir.
 - **Yapay zekâ sohbeti** için ayrı bir sunucu gerekir. Bu pakete Cloudflare Worker örneği eklendi.
 - Google Gemini API anahtarını GitHub'a veya `config.js` dosyasına kesinlikle koymayın.
 
@@ -35,10 +35,15 @@ GitHub Pages API anahtarını gizli tutup sunucu kodu çalıştıramaz. Bu neden
 
 Worker CORS başlığında HTTPS kaynaklarına izin verir. Üretimde güvenliği artırmak için Worker kodundaki CORS izin listesini yalnızca kendi GitHub Pages alan adınıza sınırlandırmanız önerilir.
 
+## Hazır sohbet kontrolü
+- Cevap kontrolünde önce beklenen cümle, ardından eksik/fazla kelime veya olası yazım farkı gösterilir. LanguageTool yanıt verirse dilbilgisi/yazım önerileri de eklenir.
+- Tatoeba üzerinden aynı Türkçe ifadeye bağlı Almanca karşılıklar aranır; bulunamazsa soru kartında kayıtlı alternatifler gösterilir. İnternetteki kaynakların kapsamı her cümle için aynı değildir.
+- LanguageTool ücretsiz kamu servisi olduğundan yoğunluk, limit veya bağlantı nedeniyle zaman zaman yanıt vermeyebilir.
+
 ## Sorun giderme
 - Sayfa açılmıyorsa repository'nin en üst seviyesinde `index.html` olduğundan emin olun; `public` klasörünün içinde kalmamalı.
 - Güncelleme görünmüyorsa Chrome'da siteyi yenileyin; PWA eski dosyaları önbellekten gösterebilir. Gerekirse site verilerini temizleyip tekrar açın.
-- Hazır sohbet internet gerektirmez; ilk ziyaret ve uygulamanın dosyalarını indirmek için internet gerekir.
+- Hazır sohbetin soru-cevap akışı çalışmak için AI gerektirmez. Ancak ayrıntılı yazım/dilbilgisi kontrolü ve internetten alternatif cümle araması için internet bağlantısı gerekir. Yazdığın Almanca cevap, kontrol düğmesine bastığında LanguageTool servisine gönderilir; servis ücretsizdir ve hız/kullanım sınırları vardır. Bağlantı veya servis sorunu olursa uygulama yerel kelime karşılaştırmasını ve kayıtlı alternatifleri gösterir.
 - Gemini kotası veya model yoğunluğu gibi Google tarafındaki hatalar Cloudflare Worker kullanılsa da yaşanabilir.
 
 ## Paket içeriği
