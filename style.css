@@ -22,3 +22,31 @@ body.working-page main{margin-top:12px}
 /* Gramer örneğinin Türkçe karşılığı */
 .grammar-example-de{font-weight:800;color:var(--ink)}.grammar-example-tr{margin-top:5px;color:#9a8f87;font-size:13px;font-style:italic}
 .offline-correction{padding:9px 10px;background:#e5efe2;border-left:4px solid #4d8050;border-radius:8px;color:#285b31}.offline-correction div{font-weight:800;margin-top:4px}.offline-diagnosis,.offline-alternatives{margin-top:10px;padding:9px 10px;background:#fffaf2;border-radius:8px;color:#5b4b3f}.offline-diagnosis ul,.offline-alternatives ul{margin:6px 0 4px;padding-left:20px}.offline-diagnosis li,.offline-alternatives li{margin:5px 0}.offline-alternatives small{display:block;margin-top:8px;color:var(--muted)}.offline-feedback a{color:var(--rust);font-weight:800}
+
+
+/* 2026-11: Daha sıcak, okunaklı çalışma ekranı ve belirgin Sonraki düğmesi */
+:root{--ink:#352b25;--muted:#776b62;--cream:#fbf5eb;--paper:#fffdf8;--rust:#a94f35;--rust2:#c87553;--peach:#f6e5d7;--sage:#e5ecdf;--line:#eadfd2;--shadow:0 8px 24px rgba(91,62,39,.08)}
+body{background:#fbf6ed;color:var(--ink);line-height:1.55}
+.card{border:1px solid #eee3d6;box-shadow:0 5px 18px rgba(88,59,35,.055);border-radius:18px}
+.page-head h2,.section-title{color:#49382d}
+.study{padding:clamp(16px,4vw,24px)}
+.study h2,.study h3{line-height:1.4}
+.translation{display:block;margin-top:8px;padding:10px 12px;background:#f8f0e6;border-radius:11px;color:#79695d;line-height:1.55}
+.toolbar{gap:10px}
+.toolbar select,.answer input,.answer textarea{border:1px solid #dfd1c2;border-radius:11px;background:#fffefa;min-height:46px}
+.actions{gap:10px;align-items:center}
+.actions button{min-height:44px}
+button{transition:background-color .15s ease,border-color .15s ease,transform .15s ease}
+button:active{transform:translateY(1px)}
+.next-action{background:#c96d32!important;border:1px solid #b85d27!important;color:#fff!important;font-weight:800!important;box-shadow:0 3px 0 #9f4e21!important;min-height:48px;padding:12px 18px;border-radius:12px}
+.next-action:hover{background:#b95d29!important}
+.next-action:focus{outline:3px solid #efc29e!important;outline-offset:3px}
+.next-action:disabled{opacity:.55;box-shadow:none!important}
+.answer{margin-top:14px}
+.answer input{width:100%;padding:12px 14px;font-size:16px}
+.feedback{border-radius:11px;padding:12px;margin-top:10px;line-height:1.5}
+.choices{gap:12px}
+.choices .choice{min-height:52px;border-radius:12px;background:#fffaf3}
+.mode-row{gap:10px}
+.mode-row .mode{border-radius:12px;min-height:44px}
+@media(max-width:520px){main{padding-left:12px;padding-right:12px}.study{padding:15px}.actions{flex-wrap:wrap}.actions button{flex:1 1 auto}.next-action{width:100%}.choices{gap:10px}}
