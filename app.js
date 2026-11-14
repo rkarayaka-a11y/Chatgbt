@@ -179,7 +179,39 @@ function bindChoice(correct,kind){
   if(!ok)card.querySelector("#forceCorrect").onclick=()=>{stats.correct++;stats.wrong=stats.wrong.filter(x=>!(x.kind===kind&&x.item===b.textContent));save();card.querySelector("#forceCorrect").disabled=true;toast("Cevap doğru olarak işaretlendi.")};
  })
 }
-function bindAnswer(correct,kind){const input=$("#answerInput"),check=$("#checkAnswer"),result=$("#result"),show=$("#showAnswer");if(!input||!check||!result||!show)return;let submitted=false;const submit=()=>{if(submitted)return;const val=input.value.trim();if(!val){toast("Lütfen önce cevabını yaz.");input.focus();return}submitted=true;const ok=norm(val)===norm(correct);result.innerHTML=`<div class="feedback ${ok?"":"bad"}">${ok?"Doğru cevap!":"Tam eşleşmedi. Beklenen cevap: "+esc(correct)}</div>${ok?"":'<div class="actions"><button type="button" class="outline" id="forceCorrect">Doğru say</button></div>'}`;record(kind,val,ok);const force=$("#forceCorrect");if(force)force.onclick=()=>{stats.correct++;stats.wrong=stats.wrong.filter(x=>!(x.kind===kind&&x.item===val));save();force.disabled=true;toast("Cevap doğru olarak işaretlendi.")};check.disabled=true};check.onclick=submit;input.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();submit()}});show.onclick=()=>{result.innerHTML=`<div class="feedback">Beklenen cevap: ${esc(correct)}</div>`;submitted=true;check.disabled=true}}
+function bindAnswer(correct,kind){
+ const card=kind==="sentence"?$("#sentenceCard"):$("#wordCard");
+ if(!card)return;
+ let submitted=false;
+ const submit=()=>{
+  const input=card.querySelector("#answerInput"),result=card.querySelector("#result"),check=card.querySelector("#checkAnswer");
+  if(!input||!result||!check){toast("Cevap alanı yüklenemedi. Testi yeniden aç.");return}
+  if(submitted)return;
+  const val=input.value.trim();
+  if(!val){toast("Lütfen önce cevabını yaz.");input.focus();return}
+  submitted=true;
+  const ok=norm(val)===norm(correct);
+  result.innerHTML=`<div class="feedback ${ok?"":"bad"}">${ok?"Doğru cevap!":"Tam eşleşmedi. Beklenen cevap: "+esc(correct)}</div>${ok?"":'<div class="actions"><button type="button" class="outline" id="forceCorrect">Doğru say</button></div>'}`;
+  record(kind,val,ok);
+  const force=card.querySelector("#forceCorrect");
+  if(force)force.onclick=()=>{stats.correct++;stats.wrong=stats.wrong.filter(x=>!(x.kind===kind&&x.item===val));save();force.disabled=true;toast("Cevap doğru olarak işaretlendi.")};
+  check.disabled=true;
+ };
+ card.onclick=(event)=>{
+  const checkButton=event.target.closest("#checkAnswer");
+  const showButton=event.target.closest("#showAnswer");
+  if(checkButton){event.preventDefault();submit();return}
+  if(showButton){
+   event.preventDefault();
+   const result=card.querySelector("#result"),check=card.querySelector("#checkAnswer");
+   if(!result||!check){toast("Cevap alanı yüklenemedi. Testi yeniden aç.");return}
+   result.innerHTML=`<div class="feedback">Doğru cevap: ${esc(correct)}</div>`;
+   submitted=true;check.disabled=true;
+  }
+ };
+ const input=card.querySelector("#answerInput");
+ if(input)input.onkeydown=event=>{if(event.key==="Enter"){event.preventDefault();submit()}};
+}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 $$('[data-target="word"]').forEach(b=>b.onclick=()=>{$$('[data-target="word"]').forEach(x=>x.classList.toggle("active",x===b));wordMode=b.dataset.mode;persistProgress();renderWord()});
 $$('[data-target="sentence"]').forEach(b=>b.onclick=()=>{$$('[data-target="sentence"]').forEach(x=>x.classList.toggle("active",x===b));sentenceMode=b.dataset.mode;persistProgress();renderSentence()});
